@@ -1,0 +1,111 @@
+
+
+<form
+  class="form-group container"
+  (ngSubmit)="agregar()"
+  #miFormulario="ngForm"
+>
+
+<div *ngIf="miFormulario.invalid && miFormulario.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+  <i class="bi bi-shield-x"></i>
+  <div>Este campo es requerido.</div>
+</div>
+
+  <div>
+    <label for="proyecto">Proyecto</label>
+    <input
+      autocomplete="off"
+      class="form-control"
+      type="text"
+      id="proyecto"
+      placeholder="Nombre del proyecto"
+      [(ngModel)]="estadoInicial.proyecto"
+      name="proyecto"
+      minlength="3"
+      maxlength="15"
+      required
+    />
+  </div>
+
+
+  <div>
+    <label for="horas">Horas</label>
+    <input
+      class="form-control"
+      type="number"
+      id="horas"
+      placeholder="Horas para completar"
+      [(ngModel)]="estadoInicial.horas"
+      name="horas"
+      required
+      min="0"
+      max="25"
+    />
+  </div>
+
+  <div>
+    <div class="row">
+      <label for="tecnologias">Tecnologías</label>
+      <div class="col-12 col-md-8">
+        <input
+          autocomplete="off"
+          class="form-control"
+          type="text"
+          id="tecnologias"
+          placeholder="Nombre de la tecnología"
+          [(ngModel)]="estadoInicial.tecnologia"
+          name="tecnologia"
+          minlength="3"
+          maxlength="15"
+        />
+      </div>
+      <div class="col-12 col-md-4">
+        <button (click)="agregarTec()" type="button" class="btn btn-success">Agregar</button>
+      </div>
+
+      <div class="col-12 m-2">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item" *ngFor="let item of tecnologias">{{ item}}</li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-warning mt-2 w-100" type="submit">
+      Agregar Proyecto
+    </button>
+  </div>
+</form>
+
+<!--
+
+
+<pre>
+  Propyectos: {{ proyectos | json }}
+  Valido: {{ miFormulario.valid }}
+  Errores: {{ miFormulario.controls["horas"]?.errors | json }}
+</pre>
+-->
+<div class="container">
+
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">Proyecto</th>
+      <th scope="col">Horas</th>
+      <th scope="col">Tecnologias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let proyecto of proyectos">
+      <th scope="row">{{ proyecto.proyecto}}</th>
+      <th >{{ proyecto.horas}}</th>
+      <th >{{ proyecto.tecnologias}}</th>
+    </tr>
+  </tbody>
+</table>
+</div>

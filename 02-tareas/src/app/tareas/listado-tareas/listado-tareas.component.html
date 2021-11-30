@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ACTIVIDAD</th>
+      <th>COMPLETAR</th>
+      <th>ELIMINAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tarea of tareas; index as i">
+      <th>{{ i }}</th>
+      <td>
+        <b [ngClass]="tarea.completada ? 'is-underlined': '' ">
+          {{ tarea.tarea }}
+        </b>
+      </td>
+      <td>
+        <button [disabled]="tarea.completada"  (click)="completarTarea(tarea)" class="button is-link">COMPLETAR</button>
+      </td>
+      <td>
+        <button (click)="delete(tarea)" class="button is-danger">ELIMINAR</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
